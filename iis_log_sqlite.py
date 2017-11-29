@@ -49,6 +49,7 @@ class DB(object):
                         continue
                     values = tuple(line.split())
                     result.append(values)
+        print "Success found %s records"% len(result)                    
         sql='INSERT INTO info VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)'
         try:
             self.cursor.executemany(sql,result)
@@ -57,7 +58,7 @@ class DB(object):
         self.db.commit()
         self.free()
         self.disconnect()
-        print "Success writing %s records"% len(result)
+
 
 
 if __name__ == "__main__":
