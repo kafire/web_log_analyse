@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
+
 import re
 import glob
-import time
 import sqlite3
 import linecache
 
@@ -13,13 +13,11 @@ class DB(object):
         self.db.text_factory = str
         self.cursor = self.db.cursor()
         self.remote_addr = r"?P<ip>[\d.]*"
-        self.local_time = r".*?"
+        self.local_time = r"?P<time>.*?"
         self.method = r"?P<method>\S+"
         self.request = r"?P<request>\S+"
         self.status = r"?P<status>\d+"
-        self.bodyBytesSent = r"?P<bodyBytesSent>\d+"
-        self.refer = r"""?P<refer>[^\"]*"""
-        self.userAgent = r"""?P<userAgent>.*"""
+        self.bodyBytesSent = r"?P<bodyBytesSent>.+"
         self.create_table()
 
 
@@ -30,9 +28,7 @@ class DB(object):
            method varchar(20),
            request varchar(255),
            status int(11),
-           body int(11),
-           referer varchar(255),
-           useragent varchar(255)
+           body varchar(255)
        '''
         query = 'CREATE TABLE IF NOT EXISTS info(%s)'% (values)
         self.cursor.execute(query)
@@ -53,13 +49,13 @@ class DB(object):
         result=[]
         for logfile in glob.glob('log/*.log'):
             for logline in self.readline(logfile):
-                p = re.compile(r"(%s)\ -\ -\ \[(%s)]\ \"(%s)?[\s]?(%s)?.*?\"\ (%s)\ (%s)\ \"(%s)\"\ \"(%s).*?\"" % (
-                    self.remote_addr,self.local_time, self.method, self.request,  self.bodyBytesSent, self.status,self.refer, self.userAgent),
+                p = re.compile(r"(%s)\ -\ -\ \[(%s)]\ \"(%s)?[\s]?(%s)?.*?\"\ (%s)\ (%s)" % (
+                    self.remote_addr,self.local_time, self.method, self.request, self.status,self.bodyBytesSent),
                     re.VERBOSE)
                 values = re.findall(p, logline)[0]
                 result.append(values)
         print "Success found %s records" % len(result)
-        sql='INSERT INTO info VALUES(?,?,?,?,?,?,?,?)'
+        sql='INSERT INTO info VALUES(?,?,?,?,?,?)'
         try:
             self.cursor.executemany(sql,result)
         except BaseException as e:
