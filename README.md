@@ -5,7 +5,7 @@
 
 ​	脚本支持把多个分散（如果）的日志文件合并到一起存到sqlite里。
 
-####2、iis_log_sqlite.py
+#### 2、iis_log_sqlite.py
 
 - iis6默认日志路径：C:\Windows\System32\LogFiles， 
 - iis7默认日志路径：C:\inetpub\logs\LogFiles
@@ -55,21 +55,21 @@ log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
 Apache默认开启访问日志记录，手工开启conf目录下的httpd.conf文件，默认配置：
 
 - windows 环境：
-
+```
 ErrorLog "logs/error.log"
 
 LogFormat "%h %l %u %t \"%r\" %>s %b" common
-
+```
 - linux环境：
 
   Apache默认提供了如下格式模板，默认使用了common
-
+```
 LogFormat "%v:%p %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined
 LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined
 LogFormat "%h %l %u %t \"%r\" %>s %O" common
 LogFormat "%{Referer}i -> %U" referer
 LogFormat "%{User-agent}i" agent
-
+```
 
 
 > %h 访问的用户IP地址
