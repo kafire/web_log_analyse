@@ -27,7 +27,7 @@ IIS6默认开启日志，默认字段如下：
 
 
 
-#### 2、nginx_log_sqlite.py
+#### 3、nginx_log_sqlite.py
 
 
 
@@ -48,7 +48,7 @@ log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
 
 
 
-#### 3、apache_log_sqlite.py
+#### 4、apache_log_sqlite.py
 
 -  Apache 默认的日志路径是/usr/local/apache/logs/access_log或者/var/log/apache2/access_log
 
@@ -72,14 +72,14 @@ LogFormat "%{User-agent}i" agent
 ```
 
 
-> %h 访问的用户IP地址
-> %l 访问逻辑用户名，通常返回'-'
-> %u 访问验证用户名，通常返回'-'
-> %t 访问日时
-> %r 访问的方式(post或者是get)，访问的资源和使用的http协议版本
-> %s 访问返回的http状态
-> %b 访问资源返回的流量
-> %T 访问所使用的时间
+> %h 访问的用户IP地址<br>
+> %l 访问逻辑用户名，通常返回'-'<br>
+> %u 访问验证用户名，通常返回'-'<br>
+> %t 访问日时<br>
+> %r 访问的方式(post或者是get)，访问的资源和使用的http协议版本<br>
+> %s 访问返回的http状态<br>
+> %b 访问资源返回的流量<br>
+> %T 访问所使用的时间<br>
 
 
 
@@ -87,7 +87,7 @@ LogFormat "%{User-agent}i" agent
 
 
 
-#### 4、tomcat_log_sqlite.py
+#### 5、tomcat_log_sqlite.py
 
 - 首先是配置tomcat访问日志数据，默认情况下访问日志没有打开，配置的方式如下：
 
