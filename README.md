@@ -52,7 +52,7 @@ log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
 
 -  Apache 默认的日志路径是/usr/local/apache/logs/access_log或者/var/log/apache2/access_log
 
-Apache默认开启访问日志记录，手工开启conf目录下的httpd.conf文件，默认配置：
+Apache默认开启访问日志记录，手工开启conf目录下的httpd.conf文件(RPM安装一般在/etc/httpd/conf/httpd.conf，源码安装在usr/local/apache2/conf/httpd.conf)，默认配置：
 
 - windows 环境：
 ```
