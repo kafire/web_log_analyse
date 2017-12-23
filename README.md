@@ -55,6 +55,7 @@ log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
 Apache默认开启访问日志记录，手工开启conf目录下的httpd.conf文件(RPM安装一般在/etc/httpd/conf/httpd.conf，源码安装在usr/local/apache2/conf/httpd.conf)，默认配置：
 
 - windows 环境：
+在windows环境下，其实一开始由于配置问题，默认没有开启access.log
 ```
 ErrorLog "logs/error.log"
 
